@@ -1,5 +1,6 @@
 package com.ggrgg.createredstonelinkgui.common;
 
+import com.ggrgg.createredstonelinkgui.compat.createutilities.CreateUtilitiesCompat;
 import com.mojang.authlib.GameProfile;
 
 import net.minecraft.core.BlockPos;
@@ -23,7 +24,8 @@ public class VoidLinkHelper {
         if (checked) return;
         checked = true;
         try {
-            Class<?> vlbClass = Class.forName("me.duquee.createutilities.blocks.voidtypes.VoidLinkBehaviour");
+            Class<?> vlbClass = CreateUtilitiesCompat.getVoidLinkBehaviourClass();
+            if (vlbClass == null) return;
             voidLinkType = vlbClass.getField("TYPE").get(null);
             testHitMethod = vlbClass.getMethod("testHit", int.class, Vec3.class);
             getOwnerMethod = vlbClass.getMethod("getOwner");

@@ -169,3 +169,17 @@
 | # | Action | Expected Result |
 |---|--------|-----------------|
 | N1 | Run the mod **without** Create Utilities installed. | Redstone Link features work normally. Void Link features are absent. No crash or error. |
+
+---
+
+## O — Create Utilities Distribution Matrix
+
+Create Utilities ships as two independent distributions that both register under the `createutilities` mod id. Run the Void Link cases (G, H) once per row.
+
+| # | Create Utilities installed | Action | Expected Result |
+|---|---------------------------|--------|-----------------|
+| O1 | **Unofficial Port** only (`me.duquee.createutilities`) | Right-click a `void_motor` / `void_chest` / `void_tank` / `void_battery` frequency slot with an empty hand. | Void Link GUI opens, exactly as before this change. Debug log shows `Found VoidLinkBehaviour: me.duquee.createutilities.blocks.voidtypes.VoidLinkBehaviour`. |
+| O2 | **Create Utilities J** only (`io.github.jasonsimpart.createutilitiesj`) | Same as O1. | Void Link GUI opens. Frequencies read, write, and relabel correctly; ownership claim works; Relocate reverses the block's facing. Debug log shows `Found VoidLinkBehaviour: io.github.jasonsimpart.createutilitiesj.blocks.voidtypes.VoidLinkBehaviour`. |
+| O3 | **Create Utilities J** only | Relocate (Move) a `void_chest` to a new position. | Placed block's `facing` is reversed so the frequency slots face the player. |
+| O4 | **Neither** | Same as O1. | No GUI, no crash (same as N1). Debug log shows `No supported Create Utilities distribution detected`. |
+| O5 | **Both** at once | Try to load a world and open a Void Link GUI. | Not a supported configuration — both register mod id `createutilities` and the same block ids, so the game itself rejects the duplicate. The compat layer must not add a *second* failure: the first candidate on the classpath simply wins. |

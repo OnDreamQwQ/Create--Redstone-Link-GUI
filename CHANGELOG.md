@@ -1,5 +1,9 @@
 ## Changelog
 
+# 1.21.1-1.9.3
+
+- Support for **Create Utilities J** (`io.github.jasonsimpart.createutilitiesj`), on top of the existing **Create Utilities (Unofficial Port)** (`me.duquee.createutilities`) support. Both distributions share the `createutilities` mod id, so the void link behaviour class is now resolved from a candidate list instead of one hardcoded package.
+
 # 1.21.1-1.9.1
 
 - Compat for Tiny Create (That was way harder than I thought)

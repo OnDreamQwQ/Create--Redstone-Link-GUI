@@ -3,6 +3,7 @@ package com.ggrgg.createredstonelinkgui.common.menu;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import com.ggrgg.createredstonelinkgui.compat.createutilities.CreateUtilitiesCompat;
 import com.simibubi.create.content.redstone.link.LinkBehaviour;
 
 import net.minecraft.world.item.ItemStack;
@@ -70,7 +71,8 @@ public class FrequencyHelper {
         if (voidReflectionResolved) return;
         voidReflectionResolved = true;
         try {
-            Class<?> vlbClass = Class.forName("me.duquee.createutilities.blocks.voidtypes.VoidLinkBehaviour");
+            Class<?> vlbClass = CreateUtilitiesCompat.getVoidLinkBehaviourClass();
+            if (vlbClass == null) return;
             try { VOID_setFrequencyMethod = vlbClass.getMethod("setFrequency", boolean.class, ItemStack.class); } catch (Throwable ignored) {}
             try { VOID_firstFreqField = vlbClass.getDeclaredField("frequencyFirst"); VOID_firstFreqField.setAccessible(true); } catch (Throwable ignored) {}
             try { VOID_lastFreqField = vlbClass.getDeclaredField("frequencyLast"); VOID_lastFreqField.setAccessible(true); } catch (Throwable ignored) {}
